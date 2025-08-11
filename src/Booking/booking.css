@@ -1,0 +1,119 @@
+/* --- FIX: Main container with top padding to avoid header overlap --- */
+.booking-container {
+  background-color: #000;
+  min-height: 100vh;
+  padding-top: 100px; /* Adjust if header height changes */
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+/* --- ENHANCEMENT: Main form container styling --- */
+.form-container {
+  background-color: #111;
+  color: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 25px rgba(199, 31, 55, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* --- ENHANCEMENT: Typography and titles --- */
+.step-title {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #c71f37;
+  display: inline-block;
+  margin: 0 auto 1rem auto !important;
+}
+
+/* --- ENHANCEMENT: Step 1 form layout --- */
+.fullname-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.radio-group {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* --- ENHANCEMENT: Step 3 confirmation and payment sections --- */
+.confirmation-summary {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px !important;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  align-items: center;
+  text-align: left;
+}
+
+.summary-grid strong {
+  font-weight: 500;
+  color: #b0b0b0;
+}
+
+.payment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.qr-code {
+  max-width: 200px;
+  border-radius: 8px;
+  border: 2px solid white;
+}
+
+/* --- ENHANCEMENT: Footer support link --- */
+.support-text {
+  color: aliceblue;
+  text-align: center;
+  margin-top: 30px;
+  font-family: "Roboto", sans-serif;
+}
+
+.support-text a {
+  color: #e62b1e;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.support-text a:hover {
+  border-bottom-color: #e62b1e;
+}
+
+/* Ant Design & MUI Overrides */
+.ant-upload-wrapper .ant-upload-list .ant-upload-list-item {
+  color: aliceblue;
+}
+.anticon svg {
+  color: aliceblue;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .fullname-container {
+    flex-direction: column;
+  }
+  .summary-grid {
+    grid-template-columns: 100px 1fr;
+    gap: 0.75rem;
+  }
+}

@@ -1,0 +1,224 @@
+/* General Layout */
+.BookingMain {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  padding: 20px;
+  background: linear-gradient(to right, #1e1e1e, #121212);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.cont{
+    justify-content: start;
+    padding: 10px 300px;
+}
+
+/* Spotlight Cards */
+.spotllit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.custom-spotlight-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex: 1 1 250px;
+  min-width: 250px;
+  text-align: center;
+}
+
+.custom-spotlight-card:hover {
+  transform: scale(1.05);
+}
+
+.invite {
+  color: #fff;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px black;
+}
+
+/* Form Styling */
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  background: #2c2c2c;
+  color: white;
+  font-size: 14px;
+}
+
+.input1 {
+  width: 100%;
+}
+
+.compressedForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.compressedForm > div {
+  flex: 1;
+  min-width: 140px;
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.no-spinner {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.req {
+  color: #e74c3c;
+  margin-left: 6px;
+}
+
+.bi-ticket-fill {
+  color: #c71f37;
+}
+
+/* Stepper & Buttons */
+.ant-steps-item-title {
+  color: white !important;
+}
+
+.ant-steps-item-description {
+  color: #ccc !important;
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+  background-color: #c71f37 !important;
+  border-color: #c71f37 !important;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+
+.ant-steps-item-wait .ant-steps-item-icon {
+  background-color: #555 !important;
+  border-color: #555 !important;
+}
+
+.ant-btn-primary {
+  background-color: #c71f37;
+  border-color: #c71f37;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 10px rgba(199, 31, 55, 0.4);
+  transition: 0.3s ease all;
+}
+
+.ant-btn-primary:hover {
+  background-color: #9e0b25;
+  border-color: #9e0b25;
+}
+
+.ant-message {
+  color: white;
+}
+
+.step-controls {
+  margin-top: 24px;
+  text-align: center;
+}
+
+/* Content Card */
+.step-content {
+  text-align: center;
+  color: white;
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  border: 1px solid #2e2e2e;
+  margin-top: 16px;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+
+
+ .ant-upload-wrapper .ant-upload-list .ant-upload-list-item{
+    color: aliceblue;
+ }
+ .anticon svg{
+    color: aliceblue;
+ }
+
+h4{
+    margin: 5px;
+}
+
+/* ============ Responsive Design ============ */
+@media screen and (max-width: 768px) {
+
+    .cont{
+    justify-content: center;
+    padding: 10px;
+}
+
+  .spotllit {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .compressedForm {
+    flex-direction: column;
+  }
+
+  .step-content {
+    padding: 16px;
+  }
+
+  .ant-btn-primary {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 10px;
+  }
+
+  .ant-steps-horizontal:not(.ant-steps-label-vertical) .ant-steps-item {
+    flex: 1;
+  }
+
+  form input {
+    font-size: 16px;
+  }
+
+  .invite {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .invite {
+    font-size: 20px;
+  }
+
+  .custom-spotlight-card {
+    padding: 16px;
+  }
+
+  .step-content {
+    padding: 12px;
+  }
+
+  form input {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+.page-wrapper {
+    background-color: #000;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 120px 1rem 1rem 1rem;
+    font-family: sans-serif;
+}
+
+.page-content {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.tab-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.tab-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: rgba(20, 20, 20, 0.7);
+    border-radius: 12px;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.tab-button {
+    position: relative;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    background: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    opacity: 0.7;
+}
+
+.tab-button span {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+}
+
+.tab-button:not(.active):hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.tab-button.active {
+    color: #fff;
+    opacity: 1;
+}
+
+.active-pill {
+    position: absolute;
+    inset: 0;
+    background: #e62b1e;
+    border-radius: 8px;
+    z-index: 0;
+    box-shadow: 0 0 10px rgba(230, 43, 30, 0.5), 0 0 20px rgba(230, 43, 30, 0.3);
+}
+
+.content-box {
+    background: rgba(55, 65, 81, 0.5);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(107, 114, 128, 0.5);
+}
+
+.section-heading {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.section-heading > div {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+}
+
+.section-heading .uppercase {
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-heading > div > span:nth-child(2) {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: #cccccc;
+}
+
+.section-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    height: 4px;
+    border-radius: 999px;
+    background-color: #e62b1e;
+}
+
+.dot-lg {
+    width: 40px;
+}
+
+.dot-md {
+    width: 12px;
+}
+
+.dot-sm {
+    width: 4px;
+}
+
+.speaker-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.speaker-card {
+    background: rgba(31, 41, 55, 0.5);
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.speaker-card:hover {
+    transform: translateY(-8px);
+}
+
+.image-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.speaker-card.year-2023 .image-container {
+  aspect-ratio: 1080 / 850;
+}
+
+.speaker-card.year-2023 .speaker-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.speaker-card.year-2024 .image-container {
+  aspect-ratio: 1 / 1;
+}
+
+.speaker-card:hover .speaker-image {
+    transform: scale(1.05);
+}
+
+.speaker-name {
+    padding: 1rem 1rem;
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.3;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.theme-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 2rem;
+margin-bottom: 1rem;
+}
+
+.randr-logo {
+    max-width: 100%; 
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    margin: 0 auto;
+    align-self: center;
+}
+
+.infinity-logo {
+    max-width: 100%; 
+    height: auto;
+    max-width: 600px;
+    object-fit: contain;
+    margin: 0 auto;
+    align-self: center;
+}
+
+@media (min-width: 768px) {
+.theme-grid {
+grid-template-columns: 1fr 1fr;
+}
+}
+
+.theme-image {
+    display: flex;
+    justify-content: center;
+}
+
+.theme-description {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    align-content: center;
+    border-left: 3px solid #e62b1e; 
+    padding-left: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.theme-description p:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.speaker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .speaker-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.video-section {
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.watch-button {
+    background: #e62b1e;
+    color: white;
+    padding: 0.75rem 2rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(229, 57, 53, 0.3);
+}
+
+.watch-button:hover {
+    background: #c41f13;
+    transform: scale(1.05);
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    padding: 1rem;
+}
+
+.modal-content {
+    background-color: rgba(25, 25, 25, 0.65);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 32rem;
+    padding: 2rem;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    text-align: center;
+    color: #ffffff;
+}
+
+.modal-content h3 {
+    font-weight: 700;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.modal-close svg {
+    width: 24px;
+    height: 24px;
+    stroke: rgba(255, 255, 255, 0.8);
+    transition: stroke 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover svg {
+    stroke: white;
+    transform: scale(1.1);
+}
+
+.modal-description {
+    margin-top: 1.5rem;
+    color: #d1d5db;
+    white-space: pre-wrap;
+    line-height: 1.6;
+}

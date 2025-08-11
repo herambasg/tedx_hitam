@@ -1,0 +1,28 @@
+.maindivteam{
+    padding: 110px 20px 20px; 
+}
+
+.tabs{
+    padding: 6px 10px 5px 10px;
+    margin: 20px 5px ;
+    border: rgb(75, 75, 75) 2px solid;
+    border-radius: 20px;
+    background-color: aliceblue;
+    cursor: pointer;
+    text-decoration: solid;
+    font-family: 'Lato';
+    transition: 200ms;
+}
+
+.tabs:hover{
+    background-color: rgb(255, 97, 97);
+    color: aliceblue;
+    border: 2px solid rgb(110, 0, 0);
+}
+
+.HeadS{
+    border-left: 5px solid rgb(217, 0, 0);
+    padding-left: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}

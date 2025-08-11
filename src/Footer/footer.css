@@ -1,0 +1,188 @@
+/* General Footer Styles */
+.tedx-footer {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  padding: 40px 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  align-items: start;
+  margin-top: -1.5rem;
+  margin-bottom: -0.5rem;
+}
+
+.footer-section h4 {
+  font-size: 1.2rem;
+  color: #e62b1e;
+  margin-bottom: 12px;
+  position: relative;
+  padding-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 35px;
+  height: 2px;
+  background-color: #e62b1e;
+}
+
+.footer-section p, .footer-section a {
+  font-size: 1rem;
+  color: #b3b3b3;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #e62b1e;
+  transition: color 0.2s ease-in-out;
+}
+
+/* --- Column 1: Logo --- */
+.footer-section.about {
+  margin-left: -6rem; 
+  margin-right: 4rem; 
+}
+
+.footer-section.about .footer-logo {
+  /* Increased logo size */
+  width: 500px; 
+  max-width: 100%;
+}
+
+/* --- Column 2: Follow Us & Date --- */
+.social-icons a {
+  display: inline-flex; 
+  align-items: center;   
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.social-icons a i {
+  font-size: 1.6rem;
+  width: 30px;
+  text-align: center;
+  margin-right: 12px;
+}
+
+.event-date {
+  margin-top: 15px;
+}
+
+.event-date p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* --- Column 3: Venue & Contact --- */
+.venue-block {
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.venue-block i {
+  color: #b3b3b3;
+  font-size: 1.2rem;
+  margin-right: 12px;
+  margin-top: 4px;
+  transition: color 0.2s ease-in-out;
+}
+
+.venue-details {
+  flex: 1;
+}
+
+.venue-name {
+  font-size: 1.05rem;
+  color: #ffffff;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  padding: 0;
+  transition: color 0.2s ease-in-out;
+}
+
+.address-lines {
+  font-size: 1rem;
+  color: #b3b3b3;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  transition: color 0.2s ease-in-out;
+}
+
+.venue-block:hover i,
+.venue-block:hover .venue-name,
+.venue-block:hover .address-lines {
+  color: #e62b1e;
+}
+
+.contact-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 15px;
+}
+
+.contact-links a i {
+  font-size: 1.5rem;
+}
+
+/* --- Footer Bottom Bar (UPDATED) --- */
+.footer-bottom {
+  padding-top: 0.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid #333;
+}
+
+.footer-bottom p {
+  text-align: center;
+  font-size: 1rem;
+  color: #888;
+  margin: 0;
+  margin-bottom: -2rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .footer-content {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .footer-section.about {
+    /* Adjust for mobile padding and remove the extra gap for stacked view */
+    margin-left: -20px; 
+    margin-right: 0;
+  }
+
+  .footer-section h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .venue-block {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .social-icons, .contact-links {
+    justify-content: center;
+  }
+}

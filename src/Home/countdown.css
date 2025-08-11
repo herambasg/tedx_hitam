@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
+
+:root {
+  --ted-red: #e62b1e;
+  --background-dark: #000000;
+  --card-dark: #1f1f1f;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --border-color: rgba(230, 43, 30, 0.4);
+  --glow-color: rgba(230, 43, 30, 0.5);
+}
+
+.countdown-body {
+  background-color: var(--background-dark);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 2rem; 
+  box-sizing: border-box;
+}
+
+.countdown-wrapper {
+  text-align: center;
+  background: #181818;
+  color: var(--text-primary);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border-radius: 20px;
+  max-width: 700px;
+  width: 100%;
+  margin: 20px auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.countdown-heading {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--ted-red);
+  text-shadow: 0 0 10px var(--glow-color);
+}
+
+.countdown-subtext {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.countdown-box {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  flex-wrap: wrap;
+}
+
+.time-segment {
+  background-color: var(--card-dark);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border-radius: 12px;
+  min-width: 110px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.time-segment:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-color: var(--ted-red);
+}
+
+.time-value {
+  display: block;
+  font-family: 'Roboto Mono', monospace;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.time-segment:hover .time-value {
+  color: var(--ted-red);
+}
+
+.time-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.cta-button {
+  background: var(--ted-red);
+  color: var(--text-primary);
+  padding: 14px 35px;
+  margin-top: 3.5rem;
+  border-radius: 50px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(230, 43, 30, 0.4);
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(230, 43, 30, 0.6);
+}
+
+.expired-text {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--ted-red);
+  font-weight: 700;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

@@ -1,0 +1,111 @@
+/* Main card container */
+.team-col-box {
+  position: relative; 
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 25px;
+}
+
+/* Team member image */
+.team-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* This container holds the overlay and the details that appear on hover */
+.team-col-box-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The dark overlay that appears on hover */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Container for text */
+.team-col-box-details {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 1.5rem;
+  text-align: center;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+/* --- Hover Effects --- */
+
+.team-col-box:hover .overlay {
+  opacity: 0.3;
+}
+
+.team-col-box:hover .team-col-box-details {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.team-col-box:hover .team-img {
+  transform: scale(1.1);
+}
+
+/* --- Text & Icon Styling --- */
+
+.team-name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.team-col-box-details h6 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  align-self: center;
+}
+
+.team-col-box-details p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-style: italic;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.social-icon {
+  color: white;
+  font-size: 2rem;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 7px;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
