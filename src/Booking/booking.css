@@ -5,6 +5,7 @@
   padding-top: 100px; /* Adjust if header height changes */
   padding-bottom: 2rem;
   box-sizing: border-box;
+  
 }
 
 /* --- ENHANCEMENT: Main form container styling --- */
@@ -15,6 +16,13 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 25px rgba(199, 31, 55, 0.15);
   transition: all 0.3s ease;
+  
+}
+
+.fullname{
+  display:flex ;
+  flex-direction: row;
+  gap: 10px;
 }
 
 /* --- ENHANCEMENT: Typography and titles --- */
@@ -25,6 +33,7 @@
   border-bottom: 2px solid #c71f37;
   display: inline-block;
   margin: 0 auto 1rem auto !important;
+  
 }
 
 /* --- ENHANCEMENT: Step 1 form layout --- */

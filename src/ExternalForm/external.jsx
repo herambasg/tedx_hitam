@@ -38,10 +38,11 @@ const EBooking = () => {
   const [Designation, setDesignation] = useState("");
   const [TxnID, setTxnID] = useState("");
   const [Seat, setSeat] = useState("");
+  const [screenshot, setScreenshot] = useState(null);
+  const [fileName, setFileName] = useState("");
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
   const isStep0Valid = FName && LName && Phone && Email && Organization && Designation;
-
 
   const navigate = useNavigate();
   const userType = "External";
@@ -53,9 +54,17 @@ const EBooking = () => {
     setSeat(selectedSeat);
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setScreenshot(file);
+      setFileName(file.name);
+    }
+  };
+
   const handleSubmit = async () => {
-    if (!FName || !LName || !Phone || !Email || !Organization || !Designation || !Seat || !TxnID) {
-      return message.error("❌ Please fill out all fields before submitting.");
+    if (!FName || !LName || !Phone || !Email || !Organization || !Designation || !Seat || !TxnID || !screenshot) {
+      return message.error("❌ Please fill out all fields and upload the payment screenshot before submitting.");
     }
 
     setLoading(true);
@@ -78,6 +87,7 @@ const EBooking = () => {
       formData.append("seatNo", Seat);
       formData.append("Designation", Designation);
       formData.append("Organization", Organization);
+      formData.append("paymentScreenshot", screenshot);
 
       // Step 3: Submit to backend
       await axios.post(
@@ -144,30 +154,153 @@ const EBooking = () => {
 
         {/* Step 3: Confirm & Pay */}
         {step === 2 && (
-          <Box className="form-step">
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Scan the QR below to complete payment:
-            </Typography>
-            <img src={QR} alt="Payment QR" style={{ maxWidth: 300 }} />
-            <TextField
-              label="Transaction ID"
-              value={TxnID}
-              onChange={(e) => setTxnID(e.target.value)}
-              fullWidth
-              margin="normal"
-            />
-            <Box sx={{ mt: 2 }}>
-              <Button onClick={handleBack} sx={{ mr: 2 }}>Back</Button>
-              <Button variant="contained" onClick={handleSubmit} disabled={loading}>
+          <>
+            <Box 
+              className="form-step" 
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", md: "row" },
+                gap: "20px",
+                background: "#111",
+                padding: "20px",
+                borderRadius: "10px",
+                boxShadow: "0 0 15px rgba(0,0,0,0.3)"
+              }}
+            >
+              {/* Left Column: User Details */}
+              <Box 
+                sx={{
+                  flex: 1,
+                  padding: "20px",
+                  background: "#1a1a1a",
+                  borderRadius: "10px",
+                  color: "#fff"
+                }}
+              >
+                <Typography variant="h6" sx={{ marginBottom: "15px", color: "#e62b1e" }}>
+                  Your Details
+                </Typography>
+                <Typography><strong>Name:</strong> {FName} {LName}</Typography>
+                <Typography><strong>Email:</strong> {Email}</Typography>
+                <Typography><strong>Phone:</strong> {Phone}</Typography>
+                <Typography><strong>Organization:</strong> {Organization}</Typography>
+                <Typography><strong>Designation:</strong> {Designation}</Typography>
+                <Typography sx={{ marginTop: "10px" }}>
+                  <strong>Selected Seat:</strong>{" "}
+                  <span style={{
+                    background: "#e62b1e",
+                    color: "#fff",
+                    padding: "5px 10px",
+                    borderRadius: "5px"
+                  }}>
+                    {Seat}
+                  </span>
+                </Typography>
+              </Box>
+
+              {/* Right Column: Payment */}
+              <Box 
+                sx={{
+                  flex: 1,
+                  padding: "20px",
+                  background: "#1a1a1a",
+                  borderRadius: "10px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "flex-start"
+                }}
+              >
+                <Typography variant="body1" sx={{ marginBottom: "10px", color: "#fff" }}>
+                  Scan the QR to complete payment:
+                </Typography>
+                <img 
+                  src={QR} 
+                  alt="Payment QR" 
+                  style={{
+                    maxWidth: "200px",
+                    borderRadius: "8px",
+                    marginBottom: "15px"
+                  }} 
+                />
+
+                <TextField
+                  label="Transaction ID"
+                  value={TxnID}
+                  onChange={(e) => setTxnID(e.target.value)}
+                  fullWidth
+                  margin="normal"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      background: "#000",
+                      borderRadius: "5px",
+                      color: "#fff",
+                      "& fieldset": { borderColor: "#555" },
+                      "&:hover fieldset": { borderColor: "#e62b1e" },
+                      "&.Mui-focused fieldset": { borderColor: "#e62b1e" }
+                    },
+                    "& .MuiInputLabel-root": { color: "#aaa" },
+                    "& .MuiInputLabel-root.Mui-focused": { color: "#e62b1e" }
+                  }}
+                />
+
+                <Button
+                  variant="outlined"
+                  component="label"
+                  sx={{
+                    borderColor: "#e62b1e",
+                    color: "#e62b1e",
+                    marginTop: "10px",
+                    "&:hover": {
+                      borderColor: "#ff3d2e",
+                      backgroundColor: "rgba(230,43,30,0.1)"
+                    }
+                  }}
+                >
+                  Upload Payment Screenshot
+                  <input
+                    type="file"
+                    hidden
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </Button>
+
+                {fileName && (
+                  <Typography variant="body2" sx={{ marginTop: "5px", color: "#aaa" }}>
+                    Selected File: {fileName}
+                  </Typography>
+                )}
+
+                {err && (
+                  <Typography color="error" sx={{ mt: 2 }}>
+                    {err}
+                  </Typography>
+                )}
+              </Box>
+            </Box>
+
+            {/* Action Buttons Below Both Columns */}
+            <Box sx={{ display: "flex", gap: "10px", marginTop: "20px", justifyContent: "center" }}>
+              <Button 
+                onClick={handleBack} 
+                sx={{ color: "#fff", border: "1px solid #555" }}
+              >
+                Back
+              </Button>
+              <Button 
+                variant="contained" 
+                onClick={handleSubmit} 
+                disabled={loading}
+                sx={{
+                  background: "#e62b1e",
+                  "&:hover": { background: "#ff3d2e" }
+                }}
+              >
                 {loading ? <Spin /> : "Register"}
               </Button>
             </Box>
-            {err && (
-              <Typography color="error" sx={{ mt: 2 }}>
-                {err}
-              </Typography>
-            )}
-          </Box>
+          </>
         )}
       </Box>
     </ThemeProvider>

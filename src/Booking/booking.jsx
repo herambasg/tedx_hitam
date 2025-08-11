@@ -8,8 +8,7 @@ import {
   StepLabel,
   Box,
   Typography,
-  MenuItem,
-  Paper,
+  MenuItem
 } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ClickSpark from "../ReactBits/cursor";
@@ -27,12 +26,12 @@ const theme = createTheme({
     mode: "dark",
     background: { default: "#000", paper: "#111" },
     primary: { main: "#c71f37", contrastText: "#fff" },
-    text: { primary: "#fff", secondary: "#b0b0b0" }
+    text: { primary: "#fff", secondary: "#ccc" }
   },
-  shape: { borderRadius: 12 },
+  shape: { borderRadius: 10 },
   typography: {
     fontFamily: "Roboto, sans-serif",
-    button: { textTransform: "none", fontWeight: 600, letterSpacing: '0.5px' }
+    button: { textTransform: "none" }
   }
 });
 
@@ -49,26 +48,33 @@ function Booking() {
   const [userType, setUserType] = useState("student");
   const [Seat, setSeat] = useState("");
   const [fileList, setFileList] = useState([]);
+  const [proofFileList, setProofFileList] = useState([]); // ✅ New state for payment proof
   const [err, setErr] = useState("");
-  const [Passout,setPassout]=useState("");
-  const [OClg,setOClg]=useState("");
-  const [EmpCom,setEmpCom]=useState("")
-  const [Designation,setDesignation]=useState("")
+  const [Passout, setPassout] = useState("");
+  const [OClg, setOClg] = useState("");
+  const [EmpCom, setEmpCom] = useState("");
+  const [Designation, setDesignation] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
-  const [loading,setLoading]=useState(false);
 
   const isStepOneValid = () => {
     if (!FName || !Email || !Mno) return false;
     switch (userType) {
-      case "student": return RNo && Branch && Year;
-      case "faculty": return RNo;
-      case "alumni": return Passout;
-      case "outside": return RNo;
-      default: return false;
+      case "student":
+        return RNo && Branch && Year;
+      case "faculty":
+        return RNo;
+      case "alumni":
+        return Passout;
+      case "outside":
+        return RNo;
+      default:
+        return false;
     }
   };
 
-  const isFinalStepValid = () => TxnID;
+  const isFinalStepValid = () => TxnID && proofFileList.length > 0;
 
   const handleSeatChange = (selectedSeat) => {
     setSeat(selectedSeat);
@@ -80,11 +86,17 @@ function Booking() {
     }
     setLoading(true);
     try {
+      // ✅ Step 1: Update seat in Firebase
       const seatRef = ref(db, `seats/${Seat}`);
-      await update(seatRef, { status: "selected", roll: RNo, timestamp: null });
+      await update(seatRef, {
+        status: "selected",
+        roll: RNo,
+        timestamp: null
+      });
 
+      // ✅ Step 2: Prepare form data
       const formData = new FormData();
-      formData.append("name", FName+" "+LName);
+      formData.append("name", FName + " " + LName);
       formData.append("rollNo", RNo);
       formData.append("branch", Branch);
       formData.append("year", Year);
@@ -93,17 +105,20 @@ function Booking() {
       formData.append("txnId", TxnID);
       formData.append("userType", userType);
       formData.append("seatNo", Seat);
-      formData.append("oclg",OClg);
-      formData.append("passout",Passout);
-      formData.append("Designation",Designation);
-      formData.append("EmpCom",EmpCom);
+      formData.append("oclg", OClg);
+      formData.append("passout", Passout);
+      formData.append("Designation", Designation);
+      formData.append("EmpCom", EmpCom);
 
+      // ✅ ID Card File
       if (userType !== "alumni") {
         if (fileList.length > 0) {
           formData.append("idCard", fileList[0].originFileObj);
         }
       } else {
-        const dummyPNG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADElEQVQIW2P4//8/AwAI/AL+mxKWKAAAAABJRU5ErkJggg==";
+        // Alumni dummy file
+        const dummyPNG =
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADElEQVQIW2P4//8/AwAI/AL+mxKWKAAAAABJRU5ErkJggg==";
         const byteString = atob(dummyPNG.split(",")[1]);
         const mimeString = dummyPNG.split(",")[0].split(":")[1].split(";")[0];
         const ab = new ArrayBuffer(byteString.length);
@@ -116,21 +131,38 @@ function Booking() {
         formData.append("idCard", fakeFile);
       }
 
-      await axios.post("https://tedxhitam-bueuc4cph0fhhwdq.eastus-01.azurewebsites.net/api/booking", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // ✅ Payment Proof File
+      if (proofFileList.length > 0) {
+        formData.append("paymentScreenshot", proofFileList[0].originFileObj);
+      }
+
+      // ✅ Step 3: Send to backend  https://tedxhitam-bueuc4cph0fhhwdq.eastus-01.azurewebsites.net/api/booking
+      await axios.post(
+        "https://tedxhitam-bueuc4cph0fhhwdq.eastus-01.azurewebsites.net/api/booking",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
       setLoading(false);
       navigate("/success");
     } catch (error) {
       setLoading(false);
       console.error("❌ Error submitting booking:", error);
-      setErr(error?.response?.data?.error || error?.message || "Something went wrong. Please try again.");
+      setErr(
+        error?.response?.data?.error ||
+        error?.message ||
+        "Something went wrong. Please try again."
+      );
       message.error("❌ Booking submission failed.");
     }
   };
 
   const handleFileChange = ({ fileList }) => {
     setFileList(fileList.slice(-1));
+  };
+
+  const handleProofFileChange = ({ fileList }) => {
+    setProofFileList(fileList.slice(-1));
   };
 
   const renderConditionalFields = () => {
@@ -140,17 +172,23 @@ function Booking() {
           <>
             <TextField label="Roll Number" value={RNo} onChange={(e) => setRNo(e.target.value.toUpperCase())} fullWidth required />
             <TextField select label="Branch" value={Branch} onChange={(e) => setBranch(e.target.value)} fullWidth required>
-              {["CSE", "ECE", "EEE", "MECH", "CSC", "CSO", "CSD", "CSM"].map(opt => <MenuItem key={opt} value={opt}>{opt}</MenuItem>)}
+              {["CSE", "ECE", "EEE", "MECH", "CSC", "CSO", "CSD", "CSM"].map(opt => (
+                <MenuItem key={opt} value={opt}>{opt}</MenuItem>
+              ))}
             </TextField>
             <TextField select label="Year" value={Year} onChange={(e) => setYear(e.target.value)} fullWidth required>
-              {["1", "2", "3", "4"].map(y => <MenuItem key={y} value={y}>{y}</MenuItem>)}
+              {["1", "2", "3", "4"].map(y => (
+                <MenuItem key={y} value={y}>{y}</MenuItem>
+              ))}
             </TextField>
           </>
         );
       case "faculty":
         return (
           <TextField select label="Department" value={RNo} onChange={(e) => setRNo(e.target.value)} fullWidth required>
-            {["CSE Department", "ECE Department", "EEE Department", "MECH Department", "ET Department", "H&S DepartmentS"].map(opt => <MenuItem key={opt} value={opt}>{opt}</MenuItem>)}
+            {["CSE Department", "ECE Department", "EEE Department", "MECH Department", "ET Department", "H&S DepartmentS"].map(opt => (
+              <MenuItem key={opt} value={opt}>{opt}</MenuItem>
+            ))}
           </TextField>
         );
       case "alumni":
@@ -162,74 +200,120 @@ function Booking() {
           </>
         );
       case "outside":
-        return <TextField label="Designation" onChange={(e) => setRNo(e.target.value.toUpperCase())} fullWidth />;
+        return (
+          <TextField label="Designation" onChange={(e) => setRNo(e.target.value.toUpperCase())} fullWidth />
+        );
       default:
         return null;
     }
   };
 
   const stepContent = [
-    // --- ENHANCEMENT: Step 1 Layout ---
-    <Box display="flex" flexDirection="column" gap={2.5} maxWidth={600} mx="auto">
-      <Typography variant="h5" color="primary" className="step-title">Your Details</Typography>
-      <div className="fullname-container">
+    // Step 1
+    <Box display="flex" flexDirection="column" gap={2} maxWidth={600} mx="auto">
+      <Typography variant="h5" color="primary">Step in. Access the invisible.</Typography>
+      <div className="fullname">
         <TextField label="First Name" value={FName} onChange={(e) => setFName(e.target.value.toUpperCase())} fullWidth required />
         <TextField label="Last Name" value={LName} onChange={(e) => setLName(e.target.value.toUpperCase())} fullWidth required />
       </div>
       <TextField label="Email" type="email" value={Email} onChange={(e) => setEmail(e.target.value)} fullWidth required />
       <TextField label="Mobile Number" type="tel" value={Mno} onChange={(e) => setMno(e.target.value)} fullWidth required />
-      <ConfigProvider theme={{ token: { colorPrimary: '#c71f37' } }}>
-        <Radio.Group value={userType} onChange={(e) => setUserType(e.target.value)} buttonStyle="solid" className="radio-group">
-          <Radio.Button value="student">HITAM Student</Radio.Button>
-          <Radio.Button value="faculty">HITAM Faculty</Radio.Button>
-          <Radio.Button value="alumni">HITAM Alumni</Radio.Button>
-          <Radio.Button value="outside">HITAM Leadership</Radio.Button>
-        </Radio.Group>
+
+      <ConfigProvider
+        theme={{
+          token: { colorPrimary: '#c71f37' },
+          components: {
+            Radio: {
+              colorPrimary: '#c71f37',
+              buttonSolidCheckedBg: '#c71f37',
+              buttonSolidCheckedColor: '#fff'
+            }
+          }
+        }}
+      >
+        <Flex vertical gap="middle">
+          <Radio.Group
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+            buttonStyle="solid"
+            style={{ display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: 'center' }}
+          >
+            <Radio.Button value="student">HITAM Student</Radio.Button>
+            <Radio.Button value="faculty">HITAM Faculty</Radio.Button>
+            <Radio.Button value="alumni">HITAM Alumni</Radio.Button>
+            <Radio.Button value="outside">HITAM Leadership</Radio.Button>
+          </Radio.Group>
+        </Flex>
       </ConfigProvider>
+
       {renderConditionalFields()}
+
       {!(userType === "alumni") && (
-        <Upload beforeUpload={() => false} onChange={handleFileChange} onRemove={() => setFileList([])} fileList={fileList} maxCount={1}>
-          <Button icon={<UploadOutlined />} variant="contained" component="span">Upload ID Card</Button>
+        <Upload
+          beforeUpload={() => false}
+          onChange={handleFileChange}
+          onRemove={() => setFileList([])}
+          fileList={fileList}
+          maxCount={1}
+        >
+          <Button icon={<UploadOutlined />} style={{ backgroundColor: "#c71f37", color: "#fff" }}>
+            Upload ID Card
+          </Button>
         </Upload>
       )}
     </Box>,
 
-    // --- ENHANCEMENT: Step 2 Layout ---
-    <Box>
-       <Typography variant="h5" color="primary" className="step-title" sx={{mb: 2}}>Select Your Seat</Typography>
-       <SeatBooking RNo={Mno} Name={FName} onSeatChange={handleSeatChange} />
-    </Box>,
+    // Step 2
+    <SeatBooking RNo={Mno} Name={FName} onSeatChange={handleSeatChange} />,
 
-    // --- ENHANCEMENT: Step 3 Layout ---
-    <Box display="flex" maxWidth={700} mx="auto" flexDirection="column" alignItems="center" gap={3}>
-      <Typography variant="h5" color="primary" className="step-title">Confirm & Pay</Typography>
-      <Paper elevation={0} className="confirmation-summary">
-        <div className="summary-grid">
-            <Typography component="strong">Name:</Typography> <Typography>{FName} {LName}</Typography>
-            <Typography component="strong">Mobile:</Typography> <Typography>{Mno}</Typography>
-            <Typography component="strong">Email:</Typography> <Typography>{Email}</Typography>
-            <Typography component="strong">Type:</Typography> <Typography>{"HITAM " + userType.toUpperCase()}</Typography>
-            <Typography component="strong">Seat No:</Typography> <Typography color="primary" sx={{fontWeight: 'bold'}}>{Seat || 'Not Selected'}</Typography>
-        </div>
-      </Paper>
-      <Box className="payment-section">
-        <Typography variant="h6">
-          <strong>Amount to Pay: </strong>₹{userType.includes("student") ? "500" : userType.includes("faculty") ? "750" : "1000"}
-        </Typography>
-        <img src={QR} alt="QR Code for payment" className="qr-code" />
-        <TextField
-          label="Transaction ID"
-          value={TxnID}
-          onChange={(e) => setTxnID(e.target.value.toUpperCase())}
-          fullWidth
-          variant="outlined"
-          required
-        />
-      </Box>
-      <Button variant="contained" color="primary" onClick={handleSubmit} disabled={!isFinalStepValid() || loading} fullWidth sx={{maxWidth: 400}}>
+    // Step 3
+    <Box display="flex" maxWidth={600} mx="auto" flexDirection="column" alignItems="center" gap={2}>
+      <Typography variant="h6" color="secondary">Confirm Your Details</Typography>
+      <Typography><strong>Name:</strong> {FName + " " + LName}</Typography>
+      <Typography><strong>Mobile:</strong> {Mno}</Typography>
+      <Typography><strong>Email:</strong> {Email}</Typography>
+      <Typography><strong>Registration Type:</strong> {"HITAM " + userType.toUpperCase()}</Typography>
+      <Typography><strong>Seat No:</strong> {Seat}</Typography>
+      <Typography>
+        <strong>Amount to be paid : Rs. </strong>
+        {userType.includes("student") ? "500" :
+         userType.includes("faculty") ? "750" :
+         userType.includes("outside") ? "1000" : "1000"}
+      </Typography>
+
+      <img src={QR} alt="QR Code" style={{ maxWidth: "250px", margin: "10px 0" }} />
+
+      <TextField
+        label="Transaction ID"
+        value={TxnID}
+        onChange={(e) => setTxnID(e.target.value.toUpperCase())}
+        fullWidth
+        variant="outlined"
+        required
+      />
+
+      {/* ✅ New payment proof upload */}
+      <Upload
+        beforeUpload={() => false}
+        onChange={handleProofFileChange}
+        onRemove={() => setProofFileList([])}
+        fileList={proofFileList}
+        maxCount={1}
+      >
+        <Button icon={<UploadOutlined />} style={{ backgroundColor: "#c71f37", color: "#fff" }}>
+          Upload Payment Proof
+        </Button>
+      </Upload>
+
+      <Button variant="contained" color="primary" onClick={handleSubmit} disabled={!isFinalStepValid()}>
         Submit Details
       </Button>
-      {err && <Typography color="error" mt={2}>❌ {err}</Typography>}
+
+      {err && (
+        <Typography color="error" mt={2}>
+          ❌ {err}
+        </Typography>
+      )}
     </Box>
   ];
 
@@ -237,43 +321,49 @@ function Booking() {
     <ThemeProvider theme={theme}>
       <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
         <Spin spinning={loading} fullscreen />
-        {/* // --- FIX: Added className for padding-top --- */}
-        <Box className="booking-container">
+        <Box sx={{ backgroundColor: "#000", minHeight: "100vh", py: 4 }}>
           <Box maxWidth="lg" margin="0 auto" px={2}>
-            <Stepper activeStep={current} alternativeLabel>
-              {["Details", "Seat Selection", "Confirmation"].map((label) => (
-                <Step key={label}><StepLabel>{label}</StepLabel></Step>
+            <Stepper activeStep={current} alternativeLabel style={{marginTop:"100px"}}>
+              {["Details", "Seat Selection", "Confirmation"].map((label, index) => (
+                <Step key={index}><StepLabel>{label}</StepLabel></Step>
               ))}
             </Stepper>
-            
-            {/* // --- ENHANCEMENT: Added className for better styling --- */}
-            <Box mt={4} p={{xs: 2, sm: 4}} className="form-container">
+
+            <Box mt={4} p={3} borderRadius={3} sx={{ backgroundColor: "#111", color: "#fff" }}>
               {stepContent[current]}
             </Box>
 
             <Box mt={4} display="flex" justifyContent="center" gap={2}>
               {current > 0 && (
-                <Button onClick={() => setCurrent(current - 1)} variant="outlined" color="primary">Previous</Button>
+                <Button onClick={() => setCurrent(current - 1)} variant="outlined" color="primary">
+                  Previous
+                </Button>
               )}
               {current < stepContent.length - 1 && (
                 <Button
                   onClick={() => setCurrent(current + 1)}
                   variant="contained"
                   color="primary"
-                  disabled={(current === 0 && !isStepOneValid()) || (current === 1 && !Seat)}
+                  disabled={current === 0 && !isStepOneValid()}
                 >
                   Next
                 </Button>
               )}
             </Box>
           </Box>
-          <p className="support-text">
-            Facing issues?{" "}
-            <a href="https://wa.me/919640040089?text=Hey%2C%20I%20am%20facing%20issues%20with%20seat%20booking." target="_blank" rel="noopener noreferrer">
-              Contact Support
-            </a>
-          </p>
         </Box>
+
+        <p style={{ color: 'aliceblue', textAlign: "center", marginTop: "20px", fontFamily: "Helvetica, sans-serif" }}>
+          Facing issues with seat booking?{" "}
+          <a
+            href="https://wa.me/919640040089?text=Hey%2C%20I%20am%20facing%20issues%20with%20seat%20booking."
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#e62b1e", textDecoration: "none", fontWeight: "bold" }}
+          >
+            Click here
+          </a>
+        </p>
       </ClickSpark>
     </ThemeProvider>
   );
