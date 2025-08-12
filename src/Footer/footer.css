@@ -57,7 +57,6 @@
 }
 
 .footer-section.about .footer-logo {
-  /* Increased logo size */
   width: 500px; 
   max-width: 100%;
 }
@@ -90,19 +89,6 @@
 }
 
 /* --- Column 3: Venue & Contact --- */
-.footer-section.contact p {
-  text-align: inherit; /* Allow media query to control this */
-}
-
-.venue-name {
-  font-size: 1.05rem;
-  color: #ffffff;
-  font-weight: 700;
-  margin: 0 0 8px 0;
-  padding: 0;
-  transition: color 0.2s ease-in-out;
-}
-
 .address-line {
   display: flex;
   align-items: flex-start;
@@ -118,8 +104,16 @@
   transition: color 0.2s ease-in-out;
 }
 
+.venue-name {
+  font-size: 1.05rem;
+  color: #ffffff;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  padding: 0;
+  transition: color 0.2s ease-in-out;
+}
+
 .address-line:hover i,
-.address-line:hover .venue-name,
 .address-line:hover span {
   color: #e62b1e;
 }
@@ -153,19 +147,24 @@
 /* --- Responsive Design Fixes --- */
 @media (max-width: 768px) {
   .footer-content {
-    grid-template-columns: 1fr; /* Stack columns */
-    text-align: center; /* Center text in all sections */
+    grid-template-columns: 1fr; /* Stack all sections vertically */
     padding: 0 20px;
+  }
+
+  .footer-section {
+    /* NEW: Force all sections to center their content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .footer-section.about {
     margin: 0; /* Reset desktop margins */
-    display: flex;
-    justify-content: center; /* Center the logo image */
   }
   
   .footer-section.about .footer-logo {
-      width: 80%; /* Optional: Adjust logo size for mobile */
+      width: 80%;
       max-width: 350px;
   }
 
@@ -174,25 +173,18 @@
     transform: translateX(-50%);
   }
 
-  /* Center all flex containers */
+  /* Center all flex containers inside sections */
   .social-icons, .contact-links {
     justify-content: center;
   }
-
-  /* Fix for Venue and Address */
-  .footer-section.contact p,
-  .footer-section.contact .address-line {
-    justify-content: center;
-    text-align: center;
-  }
   
   .address-line {
-    flex-direction: column; /* Stack icon and address */
-    align-items: center; /* Center them horizontally */
+    flex-direction: column;
+    align-items: center;
     gap: 8px;
   }
 
   .address-line i {
-      margin-right: 0; /* Remove icon margin */
+      margin-right: 0;
   }
 }
