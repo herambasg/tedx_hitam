@@ -1,5 +1,5 @@
 import './home.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Threads from "../ReactBits/threads";
 import logo from "../Assets/Logos/logo-white.png";
 import logowotext from "../Assets/Logos/invisible-logo-wo-text.png";
@@ -9,13 +9,24 @@ import LandingPopup from "../pop";
 
 function Home() {
   const [showPopup, setShowPopup] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   return (
     <>
       {/* --- Main full-screen view --- */}
       <div className="main-screen">
         <div className="bg">
-          <Threads amplitude={2.5} distance={0.5} />
+          {!isMobile && <Threads amplitude={2.5} distance={0.5} />}
         </div>
         <div className="head">
           <img src={logo} alt="TEDx Logo" className="tedx" />
