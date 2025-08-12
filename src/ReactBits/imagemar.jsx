@@ -30,7 +30,7 @@ const ImageScrollQueue = () => {
       >
         {images.map((img, index) => (
           <div className="image-box" key={index}>
-            <img src={img} alt={`scroll-${index}`} />
+            <img src={img.img} alt={`scroll-${index}`} />
           </div>
         ))}
       </Marquee>
