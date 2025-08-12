@@ -1,46 +1,14 @@
 import './home.css';
-
-import { Spin } from "antd";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ClockCircleOutlined } from "@ant-design/icons";
-
 import Threads from "../ReactBits/threads";
-import ShinyText from "../ReactBits/scroll";
-import Dither from "../ReactBits/dither";
-
 import logo from "../Assets/Logos/logo-white.png";
 import logowotext from "../Assets/Logos/invisible-logo-wo-text.png";
 import invisible from "../Assets/Logos/invisible-wo-bg.png";
-
-import { generateICSReminder } from "../generateICSReminder";
-import Stack from '../ReactBits/stack.jsx';
-import DarkVeil from "../ReactBits/dark";
-import ImageScrollQueue from "../ReactBits/imagemar";
 import CountdownTimer from "./countdown";
 import LandingPopup from "../pop";
 
-const openGoogleCalendar = () => {
-  const title = encodeURIComponent("TEDxHITAM Theme Reveal");
-  const details = encodeURIComponent("Join us for the grand theme reveal at 3:00 PM IST!");
-  const location = encodeURIComponent("https://tedxhitam.com");
-  const start = "20250718T093000Z"; // UTC time for 3:00 PM IST
-  const end = "20250718T100000Z";   // 30 min event
-
-  const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}&sf=true&output=xml`;
-  window.open(url, "_blank");
-};
-
-const images = [
-  { id: 1, img: "https://tedxhitam.com/1" },
-  { id: 2, img: "https://tedxhitam.com/2" },
-  { id: 3, img: "https://tedxhitam.com/3" },
-  { id: 4, img: "https://tedxhitam.com/4" }
-];
-
 function Home() {
   const [showPopup, setShowPopup] = useState(false);
-  const navigate = useNavigate();
 
   return (
     <>

@@ -164,12 +164,12 @@
   .footer-content {
     padding: 0 20px;
     text-align: center;
+    grid-template-columns: 1fr; /* Stack columns on mobile */
   }
 
   .footer-section.about {
-    /* Adjust for mobile padding and remove the extra gap for stacked view */
-    margin-left: -20px; 
-    margin-right: 0;
+    margin: 0 auto; /* Center the logo section */
+    padding: 0 1rem; /* Add some padding */
   }
 
   .footer-section h4::after {
@@ -179,8 +179,20 @@
   
   .venue-block {
     justify-content: center;
-    text-align: left;
+    text-align: center; /* Center text inside the block */
+    flex-direction: column; /* Stack icon and text vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 10px; /* Add space between icon and text */
   }
+  
+  .venue-block i {
+    margin-right: 0; /* Remove right margin on icon */
+  }
+
+  .address-lines {
+    word-break: break-word; /* Prevent long words from overflowing */
+  }
+
 
   .social-icons, .contact-links {
     justify-content: center;

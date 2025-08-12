@@ -72,7 +72,9 @@ export default function Header() {
       {isMenuOpen && (
         <div className="mobile-menu">
           <div className="mobile-header">
-            <Link to="/"><img src={logo} alt="TEDxHITAM Logo" className="logo" /></Link>
+            <div className="mobile-logo-container">
+              <Link to="/"><img src={logo} alt="TEDxHITAM Logo" className="logo" /></Link>
+            </div>
             <button onClick={() => setIsMenuOpen(false)} className="menu-button" style={{display: 'block'}}>
               <CloseOutlined style={{ fontSize: '24px' }} />
             </button>

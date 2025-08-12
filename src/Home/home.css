@@ -12,6 +12,7 @@
   background-color: #000000; /* Set the background color for the main container */
   height: 100vh;
   position: relative;
+  overflow: hidden; /* Prevent content overflow */
 }
 
 p {
@@ -20,8 +21,8 @@ p {
 
 .tedxted {
     display: flex;
-    flex-direction: row;
-    padding: 10px 70px;
+    flex-direction: column; /* Mobile-first: stack vertically */
+    padding: 10px;
     color: aliceblue;
     justify-content: space-around;
     align-items: center;
@@ -33,22 +34,22 @@ p {
     color: #E62B1E;
 }
 
-/* This class controls the main logo in the header */
 .tedx {
-    width: 100%;      /* Make the logo responsive by default */
-    max-width: 400px; /* Set a maximum size to avoid it getting too large on desktops */
-    height: auto;     /* This is crucial to maintain the logo's original aspect ratio */
-    margin-top: 100px;
+    width: 90%; /* Responsive width */
+    max-width: 350px; /* Max size for larger screens */
+    height: auto;
+    margin-top: 120px; /* Adjusted margin for mobile */
 }
 
 .shiny {
     font-family: "Lato", sans-serif;
-    font-size: 20px;
+    font-size: 18px; /* Slightly smaller for mobile */
     font-weight: 500;
 }
 
 .invisible {
-    width: 700px;
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Adjusted for better scaling */
     margin-top: 10px;
 }
 
@@ -63,50 +64,56 @@ p {
 }
 
 .head {
-  /* This centers the content on top of the background */
   position: relative;
   z-index: 50;
-  height: 100%; /* Make it fill the parent to allow vertical centering */
-  justify-content: center;
+  height: 100%;
   display: flex;
-  text-align: center;
-  align-items: center;
   flex-direction: column;
-  /* The negative margin is no longer needed */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem; /* Added padding for spacing on small screens */
 }
 
 /* Button Styles */
 .reminder-btn {
     font-family: "Lato", sans-serif;
     font-weight: 700;
-    display: inline-flex; /* Use inline-flex for better alignment */
+    display: inline-flex;
     flex-direction: row;
+    align-items: center; /* Vertically align icon and text */
     background-color: #c71f37;
     color: rgb(255, 255, 255);
     border: 2px solid #c71f37;
-    padding: 5px 16px;
-    margin: 8px;
+    padding: 10px 20px; /* Increased padding */
+    margin-top: 30px; /* Reduced margin for mobile */
     border-radius: 50px;
     cursor: pointer;
     font-size: 16px;
     transition: 300ms;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
+
+.reminder-btn h6 {
+    margin: 0 0 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
 
 .reminder-btn:hover {
     background-color: #000000;
-    border: #c71f37 2px solid;
+    border-color: #c71f37;
 }
+
 
 .about-section-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* Stack on mobile */
   align-items: center;
   width: 90%;
   max-width: 1200px;
-  margin: 10px auto;
-  gap: 100px;
+  margin: 2rem auto; /* Added vertical margin */
+  gap: 2rem; /* Adjusted gap */
   color: white;
   padding: 2px;
 }
@@ -120,42 +127,29 @@ p {
 
 .invisible-logo-wo-text {
   width: 100%;
-  max-width: 450px;
+  max-width: 300px; /* Adjusted for mobile */
   height: auto;
   border-radius: 20px;
 }
 
 .text-content {
   flex: 1.5;
+  text-align: center; /* Center text on mobile */
 }
 
 .HeadS {
-  font-size: 2.5rem;
+  font-size: 2rem; /* Adjusted for mobile */
   margin-bottom: 15px;
 }
 
 .text-content p {
   line-height: 1.6;
   opacity: 0.9;
-}
-
-/* --- RESPONSIVE DESIGN FOR MOBILE --- */
-@media (max-width: 768px) {
-  .about-section-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 30px;
-  }
-
-  .text-content {
-    /* Ensure text container doesn't have a flex value that interferes */
-    flex: none;
-    width: 100%;
-  }
+  text-align: justify; /* Justify for better readability */
 }
 
 .t1 {
-    width: 45%;
+    width: 100%; /* Full width on mobile */
 }
 
 .what {
@@ -163,72 +157,85 @@ p {
 }
 
 .exp {
-    margin: 60px 0 0 0;
+    margin: 40px 0 0 0; /* Adjusted margin */
     padding: 3px 15px 5px;
 }
 
 .AboutTEDx {
-    display: flex;
-    flex-direction: row;
-    padding: 10px 85px 10px 100px;
+    flex-direction: column; /* Stack on mobile */
+    padding: 10px;
     color: aliceblue;
 }
 
 .about {
-    margin: 10px 10px 10px 60px;
+    margin: 20px 0 0 0; /* Adjusted margin */
     padding: 10px;
 }
 
 /* =========================================== */
 /* ============== MEDIA QUERIES ============== */
 /* =========================================== */
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
+    /* Apply styles for larger screens */
+    .tedxted {
+        flex-direction: row;
+        padding: 10px 70px;
+    }
 
-    /* No need to redeclare .tedx width here, it's already responsive. */
-    /* Just adjust the margin if needed */
     .tedx {
-        margin-top: 150px; /* Adjusted margin for better mobile layout */
+        max-width: 400px;
+        margin-top: 100px;
     }
 
-    .cont2 {
-        flex-direction: column; /* Stack content vertically on mobile */
-        gap: 20px;
-    }
-
-    .exp {
-        margin: 30px 0 0 0;
+    .shiny {
+        font-size: 20px;
     }
 
     .invisible {
-        width: 100%;      /* Make it responsive */
-        max-width: 350px; /* Keep the max-width if needed */
+        max-width: 700px;
     }
 
-    .tedxted {
-        flex-direction: column;
-        padding: 10px;
+    .reminder-btn {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding: 5px 16px;
+    }
+
+    .reminder-btn h6 {
+        font-size: 20px;
+    }
+
+    .about-section-container {
+        flex-direction: row;
+        gap: 100px;
+    }
+
+    .invisible-logo-wo-text {
+        max-width: 450px;
+    }
+
+    .text-content {
+        text-align: left;
+    }
+
+    .HeadS {
+        font-size: 2.5rem;
     }
 
     .t1 {
-        width: 100%; /* Take full width in a column layout */
-        padding: 10px;
+        width: 45%;
+    }
+
+    .exp {
+        margin: 60px 0 0 0;
     }
 
     .AboutTEDx {
-        flex-direction: column;
-        padding: 10px;
+        flex-direction: row;
+        padding: 10px 85px 10px 100px;
     }
 
-    .AboutTEDx .about {
-        margin: 20px 0 0 0;
-    }
-
-    .bg {
-        height: 615px;
-        opacity: 0.5;
-    }
-
-    .head {
-        margin-top: -615px; /* Match the new background height */
+    .about {
+        margin: 10px 10px 10px 60px;
     }
 }
