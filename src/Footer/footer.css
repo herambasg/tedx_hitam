@@ -57,7 +57,6 @@
 }
 
 .footer-section.about .footer-logo {
-  /* Increased logo size */
   width: 500px; 
   max-width: 100%;
 }
@@ -148,20 +147,19 @@
 /* --- Responsive Design Fixes --- */
 @media (max-width: 768px) {
   .footer-content {
-    grid-template-columns: 1fr; /* Stack all sections vertically */
+    grid-template-columns: 1fr;
     padding: 0 20px;
-  }
-
-  .footer-section {
-    /* NEW: Force all sections to center their content */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
   }
 
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .footer-section.about {
-    margin: 0; /* Reset desktop margins */
+    margin: 0;
   }
   
   .footer-section.about .footer-logo {
@@ -174,11 +172,15 @@
     transform: translateX(-50%);
   }
 
-  /* Center all flex containers inside sections */
-  .social-icons, .contact-links {
+  .social-icons, .contact-links, .event-date {
     justify-content: center;
   }
   
+  /* THIS IS THE FIX for the venue text */
+  .footer-section.contact p {
+    text-align: center;
+  }
+
   .address-line {
     flex-direction: column;
     align-items: center;
