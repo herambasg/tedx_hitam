@@ -44,8 +44,8 @@
 
 .about-section-image {
   flex: 1;
-  max-width: 500px;
-  height: 320px;
+  max-width: 600px;
+  height: 400px;
   border-radius: 12px;
   object-fit: cover;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);

@@ -30,7 +30,10 @@ function About() {
         <div className="about-section-text">
           <h1>About HITAM</h1>
           <p>
-            Hyderabad Institute of Technology and Management (HITAM) is renowned for its lush green campus and commitment to project-based learning. We foster an environment where students can innovate, experiment, and grow into well-rounded professionals ready to tackle real-world challenges.
+            As we proudly celebrate <b>25 years of excellence</b>, <b>Hyderabad Institute of Technology and Management (HITAM)</b> continues to shine as a beacon of transformative engineering education. Nestled in a serene, eco-conscious campus in Hyderabad, HITAM is dedicated to delivering a high-quality, holistic learning experience.
+          </p>
+          <p>
+            Our unique <b>Doing Engineering</b> approach ensures that every student graduates with real-world skills, a spirit of innovation and the confidence to lead in a rapidly evolving global landscape. For a quarter of a century, we have empowered future engineers to be industry-ready, socially conscious, and future-focused.
           </p>
           <a href="https://hitam.org/" target="_blank" rel="noopener noreferrer" className="explore-btn">
             Explore more
@@ -66,7 +69,7 @@ function About() {
           </p>
         </div>
         <img
-          src="https://placehold.co/600x400/c70039/ffffff?text=TEDxHITAM+Event"
+          src="	https://tedxhitam.com/assets/about/tedx_hitam.jpg"
           alt="TEDxHITAM Event Stage"
           className="about-section-image"
         />
@@ -75,16 +78,16 @@ function About() {
       {/* 4. About TEDx */}
       <div className="about-section about-tedx">
         <img
-          src="https://placehold.co/600x400/900c3f/ffffff?text=TEDx+Logo"
+          src="https://tedxhitam.com/assets/about/tedx.jpg"
           alt="Official TEDx Logo"
           className="about-section-image"
         />
         <div className="about-section-text">
           <h1>About TEDx</h1>
           <p>
-            TEDx promotes "ideas worth spreading" through independently organized events worldwide. Driven by passionate individuals, these events bring fresh ideas and stories to inspire and spark meaningful conversations. Guided by TED’s principles, TEDx events make a global impact at the grassroots level.
+            TEDx is an initiative to promote 'ideas worth spreading' in local communities across the world. Steered by passionate individuals, TEDx events aim to infuse the spirit of TED at the grassroot level through a series of independently organised events. These events are aimed at bringing new ideas and stories to the society so as to inspire and spark meaningful conversations. These events, under the umbrella of TED, adhere to set of prescribed guidelines provided along with the license. More than 3000 events are held as part of TEDx each year.
           </p>
-          {/* --- ADD THIS BUTTON --- */}
+
           <a href="https://www.ted.com/about/programs-initiatives/tedx-program" target="_blank" rel="noopener noreferrer" className="explore-btn">
             Explore more
           </a>
@@ -96,15 +99,15 @@ function About() {
         <div className="about-section-text">
           <h1>About TED</h1>
           <p>
-            TED (Technology, Entertainment, and Design) has evolved into a global platform for creativity and innovation. It features a diverse range of voices, from business leaders to scientists. Initiatives like TED-Ed and the TED Prize continue to inspire progress and transformative ideas worldwide.
+            Centered around topics like compact disks, e-books, and fractal mapping of coastlines, TED (Technology, Entertainment, and Design) has evolved into a global beacon of creativity and intellect. Initially featuring a narrow range of panelists, TED gradually broadened its scope to include business magnates, scientists, and philosophers. TED has since embraced inclusivity, welcoming all into its fold and continually inspiring progress.
           </p>
-           {/* --- ADD THIS BUTTON --- */}
+           
           <a href="https://www.ted.com/" target="_blank" rel="noopener noreferrer" className="explore-btn">
             Explore more
           </a>
         </div>
         <img
-          src="https://placehold.co/600x400/581845/ffffff?text=TED+Stage"
+          src="https://tedxhitam.com/assets/about/ted.jpg"
           alt="Official TED Conference Stage"
           className="about-section-image"
         />
