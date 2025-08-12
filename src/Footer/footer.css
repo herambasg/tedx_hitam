@@ -57,6 +57,7 @@
 }
 
 .footer-section.about .footer-logo {
+  /* Increased logo size */
   width: 500px; 
   max-width: 100%;
 }
