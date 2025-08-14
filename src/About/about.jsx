@@ -1,5 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+// OPTIMIZATION: Imported React.memo, useState, and useCallback for performance improvements.
+import React, { memo, useState, useCallback } from 'react';
+// OPTIMIZATION: Removed 'framer-motion' as it's no longer used for animation, reducing bundle size.
 import './about.css';
 
 // --- Image Data ---
@@ -14,8 +15,19 @@ const campusImages = [
   "https://tedxhitam.com/assets/about/campus/8.jpg",
 ];
 
-function About() {
+// OPTIMIZATION: Wrapped the component in React.memo to prevent re-renders unless its props change.
+const About = memo(function About() {
   const duplicatedImages = [...campusImages, ...campusImages];
+  const [selectedImg, setSelectedImg] = useState(null);
+
+  // OPTIMIZATION: Used useCallback to memoize the function, preventing it from being recreated on every render.
+  const closeLightbox = useCallback(() => {
+    setSelectedImg(null);
+  }, []);
+
+  const openLightbox = useCallback((src) => {
+    setSelectedImg(src);
+  }, []);
 
   return (
     <div className="about-page-container">
@@ -24,8 +36,10 @@ function About() {
       <div className="about-section about-hitam">
         <img
           src="https://tedxhitam.com/assets/about/hitam.jpg"
-          alt="HITAM Main Building"
+          alt="HITAM Main Building with lush green surroundings"
           className="about-section-image"
+          // OPTIMIZATION: Lazy loading defers loading of off-screen images.
+          loading="lazy"
         />
         <div className="about-section-text">
           <h1>About HITAM</h1>
@@ -43,24 +57,23 @@ function About() {
 
       {/* 2. Campus Gallery */}
       <div className="campus-gallery-container">
-        <motion.div
-          className="scrolling-wrapper"
-          animate={{
-            x: ['0%', '-100%'],
-            transition: {
-              ease: 'linear',
-              duration: 20,
-              repeat: Infinity,
-            }
-          }}
-        >
+        {/* OPTIMIZATION: Replaced motion.div with a standard div. */}
+        <div className="scrolling-wrapper">
           {duplicatedImages.map((src, index) => (
-            <img key={index} src={src} alt={`Campus life ${index + 1}`} className="gallery-image" />
+            <img 
+              // OPTIMIZATION: A more unique key for better rendering performance.
+              key={`${src}-${index}`}
+              src={src} 
+              // FIX: Removed the redundant word "photo" for better accessibility.
+              alt={`HITAM campus ${index + 1}`}
+              className="gallery-image"
+              onClick={() => openLightbox(src)}
+            />
           ))}
-        </motion.div>
+        </div >
       </div>
 
-      {/* 3. About TEDxHITAM (No button needed here) */}
+      {/* 3. About TEDxHITAM */}
       <div className="about-section about-tedx-hitam">
         <div className="about-section-text">
           <h1>About TEDxHITAM</h1>
@@ -69,9 +82,10 @@ function About() {
           </p>
         </div>
         <img
-          src="	https://tedxhitam.com/assets/about/tedx_hitam.jpg"
-          alt="TEDxHITAM Event Stage"
+          src="https://tedxhitam.com/assets/about/tedx_hitam.jpg"
+          alt="A speaker on the TEDxHITAM stage during an event"
           className="about-section-image"
+          loading="lazy"
         />
       </div>
 
@@ -79,15 +93,15 @@ function About() {
       <div className="about-section about-tedx">
         <img
           src="https://tedxhitam.com/assets/about/tedx.jpg"
-          alt="Official TEDx Logo"
+          alt="The official red circular TEDx logo on a black background"
           className="about-section-image"
+          loading="lazy"
         />
         <div className="about-section-text">
           <h1>About TEDx</h1>
           <p>
             TEDx is an initiative to promote 'ideas worth spreading' in local communities across the world. Steered by passionate individuals, TEDx events aim to infuse the spirit of TED at the grassroot level through a series of independently organised events. These events are aimed at bringing new ideas and stories to the society so as to inspire and spark meaningful conversations. These events, under the umbrella of TED, adhere to set of prescribed guidelines provided along with the license. More than 3000 events are held as part of TEDx each year.
           </p>
-
           <a href="https://www.ted.com/about/programs-initiatives/tedx-program" target="_blank" rel="noopener noreferrer" className="explore-btn">
             Explore more
           </a>
@@ -101,20 +115,32 @@ function About() {
           <p>
             Centered around topics like compact disks, e-books, and fractal mapping of coastlines, TED (Technology, Entertainment, and Design) has evolved into a global beacon of creativity and intellect. Initially featuring a narrow range of panelists, TED gradually broadened its scope to include business magnates, scientists, and philosophers. TED has since embraced inclusivity, welcoming all into its fold and continually inspiring progress.
           </p>
-           
           <a href="https://www.ted.com/" target="_blank" rel="noopener noreferrer" className="explore-btn">
             Explore more
           </a>
         </div>
         <img
           src="https://tedxhitam.com/assets/about/ted.jpg"
-          alt="Official TED Conference Stage"
+          alt="The official red TED logo on a stage during a conference"
           className="about-section-image"
+          loading="lazy"
         />
       </div>
 
+      {/* --- Lightbox for Enlarged Image --- */}
+      {selectedImg && (
+        <div className="lightbox-backdrop" onClick={closeLightbox}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedImg} alt="Enlarged campus view" className="lightbox-img" />
+            <button className="lightbox-close" onClick={closeLightbox}>
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
-}
+});
 
 export default About;

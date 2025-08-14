@@ -89,6 +89,10 @@
 }
 
 /* --- Column 3: Venue & Contact --- */
+.footer-section.contact p {
+  text-align: left; /* Default alignment for desktop */
+}
+
 .address-line {
   display: flex;
   align-items: flex-start;
@@ -149,13 +153,13 @@
   .footer-content {
     grid-template-columns: 1fr;
     padding: 0 20px;
-    text-align: center;
   }
 
   .footer-section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   .footer-section.about {
@@ -176,9 +180,8 @@
     justify-content: center;
   }
   
-  /* THIS IS THE FIX for the venue text */
   .footer-section.contact p {
-    text-align: center;
+    text-align: center; /* Override for mobile */
   }
 
   .address-line {
