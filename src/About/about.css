@@ -111,7 +111,6 @@
   display: flex;
   width: fit-content;
   animation: scroll 40s linear infinite;
-  /* OPTIMIZATION: Hint to the browser that the transform property will change, allowing for pre-optimization. */
   will-change: transform;
 }
 
@@ -125,7 +124,6 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  /* OPTIMIZATION: Tells the browser the element's content is self-contained, improving rendering performance. */
   contain: paint;
 }
 
@@ -215,8 +213,8 @@
 }
 
 .lightbox-img {
-  max-width: 90vw;
-  max-height: 85vh;
+  max-width: 100vw;
+  max-height: 100vh;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }

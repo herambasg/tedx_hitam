@@ -118,7 +118,7 @@ function Team() {
                     maxWidth: '80ch',
                     margin: '0 auto'
                     }}>
-                    A passionate tribe of <b>HITAMights</b>, crafting unforgettable <b>TEDx</b> that spark ideas and ignite conversations resonating far beyond the stage.
+                    A passionate tribe of <b>HITAMights</b>, crafting unforgettable <b>TEDx</b> experiences that spark ideas and ignite conversations resonating far beyond the stage.
                 </p>
                 {/* Render the new Tabs component */}
                 <Tabs tabs={TABS_DATA} activeTab={activeTab} setActiveTab={setActiveTab} />

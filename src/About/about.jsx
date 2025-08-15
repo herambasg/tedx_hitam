@@ -57,14 +57,11 @@ const About = memo(function About() {
 
       {/* 2. Campus Gallery */}
       <div className="campus-gallery-container">
-        {/* OPTIMIZATION: Replaced motion.div with a standard div. */}
         <div className="scrolling-wrapper">
           {duplicatedImages.map((src, index) => (
             <img 
-              // OPTIMIZATION: A more unique key for better rendering performance.
               key={`${src}-${index}`}
               src={src} 
-              // FIX: Removed the redundant word "photo" for better accessibility.
               alt={`HITAM campus ${index + 1}`}
               className="gallery-image"
               onClick={() => openLightbox(src)}
@@ -83,7 +80,7 @@ const About = memo(function About() {
         </div>
         <img
           src="https://tedxhitam.com/assets/about/tedx_hitam.jpg"
-          alt="A speaker on the TEDxHITAM stage during an event"
+          alt="TEDx HITAM"
           className="about-section-image"
           loading="lazy"
         />
