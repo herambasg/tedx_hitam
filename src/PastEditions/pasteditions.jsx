@@ -6,32 +6,32 @@ import './pasteditions.css';
 const infinitySpeakerData = [
     { 
         name: 'Mr. Sai Prasad Vishwanathan',
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/saiprasad.jpg',
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/speakers/saiprasad.jpg',
         bio: "Live a life that leaves a lasting impact on thousands of other people. SPV has explored the world physically and philosophically in ways that can only be cherished by means of his talks." 
     },
     { 
         name: 'Ms. Jhanvi Narang', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/jhanvinarang.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/speakers/jhanvinarang.jpg', 
         bio: "Jhanvi is a young face of modern cinema and the industry. An entrepreneur with a dream to make meaningful cinema. An MSc in Business with Marketing from Warwick Business School whose perspectives can only be conveyed through her speeches." 
     },
     { 
         name: 'Maj Gen Chandrashekar Mani', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/mani.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/speakers/mani.jpg', 
         bio: "Maj General C Mani, an experienced military leader, has successfully managed ICT infrastructure setup in India's northeastern states. With expertise in cybersecurity, electronic warfare, and IT infrastructure, he has overseen the deployment of a native campus network and led an Electronic Warfare Unit. His current role involves developing anti-drone technologies and systems, bridging user needs with available technology for defense and security forces." 
     },
     { 
         name: 'Mr. Rahul Singh', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/rahul.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/speakers/rahul.jpg', 
         bio: "A banker by the day and writer by the night, Rahul is an expert at connecting the three Is-idea, insight, and individual, who sums up his life as ABC - Author, Banker, and Community Builder." 
     },
     { 
         name: 'Mr. Sai Satish', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/satish.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/speakers/satish.jpg', 
         bio: "He's An author, CEO of Indian Servers and administrator of Andhra Hackers, he has worked with and was rewarded by various state governments for pentesting of govt. sites. He is also a cyber cops' trainer and cyber security expert who conducted many hacking awareness programs across India." 
     },
     { 
         name: 'Mrs. Lavanya Patnala', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/lavanya.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2023/speakers/lavanya.jpg', 
         bio: "Lavanya is a Hyderabad native, holds a Master's in Commerce with 26+ years of experience. Starting as an administration assistant, she progressed to administration manager. Currently, an HR Operations Manager, she completed successful projects, received accolades, and embraces personal and professional growth with enthusiasm." 
     }
 ];
@@ -39,32 +39,32 @@ const infinitySpeakerData = [
 const rrSpeakerData = [
     { 
         name: 'Dr. Chandrashekar', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/chandrashekar.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/speakers/chandrashekar.jpg', 
         bio: "Dr. ChandraSheKar (CSK) has spoken to more than 50,000 people throughout 4 continents and is ranked in the top 1% of a group of 300 leading professional speakers in India. For 20 years, he has worked at the intersection of education and entrepreneurship to enable successful ecosystems. Currently, he serves as the CEO of JGI Schools, India. \n\nCSK has coached more than 54 business leaders and entrepreneurs and delivered innumerable presentations to audiences of all sizes, sharing great strategies on business growth, efficiency, impact, reach, reputation, & balance. An Alumnus of the IIM, Lucknow, he has a Ph.D from University of Milan, Italy and was ranked among the TIMES 40under40 game changes in 2020. CSK is a Bangalorean by birth and a true Hyderabadi by heart. He currently resides in Hyderabad with his wife and parents." 
     },
     { 
         name: 'Dr. Rajdeep Manwani', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/rajdeepmanwani.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/speakers/rajdeepmanwani.jpg', 
         bio: "Dr. Rajdeep Manwani is an accomplished academician, motivational speaker, and life coach with over 25 years of experience in education and corporate training. He currently serves as a professor and Head of Academic Research at Sindhi College. A triple post-graduate with a PhD, Dr. Manwani has been recognized for his contributions to education and social empowerment, including receiving the National Award as a Role Model for Empowerment of Persons with Disabilities from the President of India.\n\nHe is a distinguished Toastmaster, having won numerous awards for his eloquence and public speaking. Passionate about empowering youth and creating inclusive environments, he has mentored over 21,500 students and professionals, making a significant impact across various sectors. His life's motto, \"Touching lives, making a difference,\" reflects his dedication to uplifting others and driving positive change." 
     },
     { 
         name: 'Mr. Uday Krishna Peddireddi', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/udaykrishna.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/speakers/udaykrishna.jpg', 
         bio: "Uday Krishna Peddireddi established the non-profit Vata Foundation, an environmental group committed to preserving India's urban greenery. Since its establishment in 2015, the foundation has made major contributions to the Tippeshwar Wildlife Sanctuary and successfully transplanted over 2,000 trees and fostered 50,000 more throughout India.\n\nWidely acclaimed for its impactful Tree Rehabilitation Program, Vata Foundation continues to lead initiatives that combat the loss of urban trees and promote ecological sustainability. Uday Krishna Peddireddi, recognized as the \"Tree Man of India,\" was honored as the Best Environmentalist of 2022 for his exceptional efforts in environmental conservation." 
     },
     { 
         name: 'Mr. Vinay Singh', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/vinaysingh.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/speakers/vinaysingh.jpg', 
         bio: "Vinay Singh leads the Education Vertical at Aon, where he has worked for over 12 years, specializing in psychometric assessments. He has collaborated with more than 500 universities and institutions, helping them with admission processes and preparing students for the industry.\n\nWith a B.Tech degree from JNTU Hyderabad and schooling from Kendriya Vidyalaya, Vinay is also passionate about marathon running, having completed 18,500 km, and traveling, covering 320 cities across India. As a member of India's IT Cluster and the Velocity Network Foundation, he is actively involved in leveraging blockchain technology to digitize and globalize career credentials." 
     },
     { 
         name: 'Ms. Prachi Shevgaonkar', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/prachi.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/speakers/prachi.jpg', 
         bio: "Prachi Shevgaonkar, a renowned climate innovator, is the founder of Cool The Globe, an app driving climate action with users from over 110 countries. Her impactful work has earned her prestigious accolades, including Forbes 30 Under 30 Asia Class of 2024, a Shark Tank India deal, and the Young Change-maker of the Year award from India's finance minister.\n\nAs the Climate Change Advisor to Tata Power, Prachi has led global initiatives, inspiring over 25 million people and saving 5 million kg of greenhouse gas emissions. She's the youngest Indian to be appointed to the Climate Leadership Coalition's advisory board and a strong advocate for youth-led solutions to global challenges, with her campaigns empowering citizens to create a sustainable future." 
     },
     { 
         name: 'Ms. Vidya Sivalenka', 
-        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/vidyashivlenka.jpg', 
+        image: 'https://tedxhitam.com/assets/pasteditions/tedx2024/speakers/vidyashivlenka.jpg', 
         bio: "Vidya Sivalenka-a media personality, entrepreneur, and music enthusiast. With experience as an RJ at Red FM and producer of films like Yashoda and Sammohanam, Vidya has explored multiple facets of the media industry, including acting.\n\nFormerly the band manager for Capricio, she now serves as Managing Partner at Band Merakee and curates Micless with Merakee, a platform connecting music lovers across cities. Prepare to be inspired by her diverse journey in media and music!" 
     },
 ];
