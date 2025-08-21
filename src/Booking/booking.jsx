@@ -14,7 +14,7 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ClickSpark from "../ReactBits/cursor";
 import SeatBooking from "../SeatBooking/Seat";
-import { message, Flex, Radio, ConfigProvider, Upload, Spin } from "antd";
+import { message, Radio, ConfigProvider, Upload, Spin } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import { db } from "../firebase";
 import { ref, update } from "firebase/database";
@@ -52,7 +52,6 @@ function Booking() {
   const [proofFileList, setProofFileList] = useState([]);
   const [err, setErr] = useState("");
   const [Passout,setPassout]=useState("");
-  const [OClg,setOClg]=useState("");
   const [EmpCom,setEmpCom]=useState("")
   const [Designation,setDesignation]=useState("")
   const navigate = useNavigate();
@@ -125,7 +124,6 @@ function Booking() {
       formData.append("txnId", TxnID);
       formData.append("userType", userType);
       formData.append("seatNo", Seat);
-      formData.append("oclg",OClg);
       formData.append("passout",Passout);
       formData.append("Designation",Designation);
       formData.append("EmpCom",EmpCom);
@@ -134,7 +132,7 @@ function Booking() {
         formData.append("paymentScreenshot", proofFileList[0].originFileObj);
       }
 
-      if (userType !== "alumni") {
+      if (userType !== "alumni" && Year !== "1") {
         if (fileList.length > 0) {
           formData.append("idCard", fileList[0].originFileObj);
         }
@@ -178,13 +176,19 @@ function Booking() {
       case "student":
         return (
           <>
-            <TextField label="Roll Number" value={RNo} onChange={(e) => setRNo(e.target.value.toUpperCase())} fullWidth required />
-            <TextField select label="Branch" value={Branch} onChange={(e) => setBranch(e.target.value)} fullWidth required>
-              {["CSE", "ECE", "EEE", "MECH", "CSC", "CSO", "CSD", "CSM"].map(opt => <MenuItem key={opt} value={opt}>{opt}</MenuItem>)}
-            </TextField>
             <TextField select label="Year" value={Year} onChange={(e) => setYear(e.target.value)} fullWidth required>
               {["1", "2", "3", "4"].map(y => <MenuItem key={y} value={y}>{y}</MenuItem>)}
             </TextField>
+            <TextField select label="Branch" value={Branch} onChange={(e) => setBranch(e.target.value)} fullWidth required>
+              {["CSE", "ECE", "EEE", "MECH", "CSC", "CSO", "CSD", "CSM"].map(opt => <MenuItem key={opt} value={opt}>{opt}</MenuItem>)}
+            </TextField>
+            <TextField 
+              label={Year === "1" ? "Admission Number" : "Roll Number"} 
+              value={RNo} 
+              onChange={(e) => setRNo(e.target.value.toUpperCase())} 
+              fullWidth 
+              required 
+            />
           </>
         );
       case "faculty":
@@ -247,7 +251,12 @@ function Booking() {
         </Radio.Group>
       </ConfigProvider>
       {renderConditionalFields()}
-      {!(userType === "alumni") && (
+      {userType === "student" && Year !== "1" && (
+        <Upload beforeUpload={() => false} onChange={handleFileChange} onRemove={() => setFileList([])} fileList={fileList} maxCount={1}>
+          <Button icon={<UploadOutlined />} variant="contained" component="span">Upload ID Card</Button>
+        </Upload>
+      )}
+      {userType === "faculty" && (
         <Upload beforeUpload={() => false} onChange={handleFileChange} onRemove={() => setFileList([])} fileList={fileList} maxCount={1}>
           <Button icon={<UploadOutlined />} variant="contained" component="span">Upload ID Card</Button>
         </Upload>
