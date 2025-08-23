@@ -213,7 +213,7 @@ const InfinityContent = ({ onSpeakerSelect, onPhotoSelect }) => (
             <InfiniteScroller items={infinityPhotoData} renderItem={(src) => <PhotoCard src={src} onSelect={onPhotoSelect} />} direction="left" speed="slow" />
         </section>
         <section className="video-section">
-            <a href="https://www.youtube.com/playlist?list=PL1wyFIFJNFh-Cbp1mUxPcN45gqlQKEjw4" target="_blank" rel="noopener noreferrer" className="watch-button">Watch the Videos</a>
+            <a href="https://www.youtube.com/playlist?list=PL1wyFIFJNFh8k_-yrg-f59IrWCKO9Spki" target="_blank" rel="noopener noreferrer" className="watch-button">Watch the Videos</a>
         </section>
     </motion.div>
 );
@@ -243,7 +243,7 @@ const RippleResonateContent = ({ onSpeakerSelect, onPhotoSelect }) => (
             <InfiniteScroller items={rrPhotoData} renderItem={(src) => <PhotoCard src={src} onSelect={onPhotoSelect} />} direction="left" speed="slow" />
         </section>
         <section className="video-section">
-            <a href="https://www.youtube.com/playlist?list=PL1wyFIFJNFh8k_-yrg-f59IrWCKO9Spki" target="_blank" rel="noopener noreferrer" className="watch-button">Watch the Videos</a>
+            <a href="https://www.youtube.com/playlist?list=PL1wyFIFJNFh-Cbp1mUxPcN45gqlQKEjw4" target="_blank" rel="noopener noreferrer" className="watch-button">Watch the Videos</a>
         </section>
     </motion.div>
 );
