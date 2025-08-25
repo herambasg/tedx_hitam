@@ -111,9 +111,7 @@ function Booking() {
     }
     setLoading(true);
     try {
-      const seatRef = ref(db, `seats/${Seat}`);
-      await update(seatRef, { status: "selected", roll: RNo, timestamp: null });
-
+      
       const formData = new FormData();
       formData.append("name", FName+" "+LName);
       formData.append("rollNo", RNo);
@@ -132,7 +130,7 @@ function Booking() {
         formData.append("paymentScreenshot", proofFileList[0].originFileObj);
       }
 
-      if (userType !== "alumni" && Year !== "1") {
+      if (userType !== "alumni") {
         if (fileList.length > 0) {
           formData.append("idCard", fileList[0].originFileObj);
         }
@@ -153,6 +151,9 @@ function Booking() {
       await axios.post("https://tedxhitam-bueuc4cph0fhhwdq.eastus-01.azurewebsites.net/api/booking", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+      const seatRef = ref(db, `seats/${Seat}`);
+      await update(seatRef, { status: "selected", roll: RNo, timestamp: null });
+
       setLoading(false);
       navigate("/success");
     } catch (error) {
@@ -251,9 +252,9 @@ function Booking() {
         </Radio.Group>
       </ConfigProvider>
       {renderConditionalFields()}
-      {userType === "student" && Year !== "1" && (
+      {userType === "student"  && (
         <Upload beforeUpload={() => false} onChange={handleFileChange} onRemove={() => setFileList([])} fileList={fileList} maxCount={1}>
-          <Button icon={<UploadOutlined />} variant="contained" component="span">Upload ID Card</Button>
+          <Button icon={<UploadOutlined />} variant="contained" component="span">{Year === "1" ? "Upload Aadhar Card" : "Upload ID Card"} </Button>
         </Upload>
       )}
       {userType === "faculty" && (

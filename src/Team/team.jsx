@@ -12,7 +12,6 @@ const TABS_DATA = [
 
 const TEAM_2025_DATA = {
     advisors: [
-        { name: 'Dr. Sohum Sohoni', des: 'Director, HITAM', img: 'team/team2025/advisors/1.jpg', url: 'https://www.linkedin.com/in/ssohoni/' },
         { name: 'Dr. S. Aravind', des: 'Principal, HITAM', img: 'team/team2025/advisors/2.jpg' },
         { name: 'Dr. K. Bindu Madhavi', des: 'Assistant Dean Student Engagement, HITAM', img: 'team/team2025/advisors/3.jpg' }
     ],
