@@ -63,15 +63,22 @@ function Booking() {
 
   // CHANGED: Validation check now includes email and phone number errors
   const isStepOneValid = () => {
-    if (!FName || !Email || !Mno || emailError || mnoError) return false;
-    switch (userType) {
-      case "student": return RNo && Branch && Year;
-      case "faculty": return RNo;
-      case "alumni": return Passout;
-      case "outside": return RNo;
-      default: return false;
-    }
-  };
+  if (!FName || !Email || !Mno || emailError || mnoError) return false;
+
+  switch (userType) {
+    case "student":
+      return RNo && Branch && Year && fileList.length > 0; // ID card required
+    case "faculty":
+      return RNo && fileList.length > 0; // ID card required
+    case "alumni":
+      return Passout; // no ID card required (dummy added backend)
+    case "outside":
+      return RNo && fileList.length > 0; // ID card required
+    default:
+      return false;
+  }
+};
+
 
   const isFinalStepValid = () => TxnID && proofFileList.length > 0;
 
@@ -147,7 +154,7 @@ function Booking() {
         const fakeFile = new File([blob], "demo.png", { type: mimeString });
         formData.append("idCard", fakeFile);
       }
-
+      {/*https://tedxhitam-bueuc4cph0fhhwdq.eastus-01.azurewebsites.net/api/booking */}
       await axios.post("https://tedxhitam-bueuc4cph0fhhwdq.eastus-01.azurewebsites.net/api/booking", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -257,7 +264,7 @@ function Booking() {
           <Button icon={<UploadOutlined />} variant="contained" component="span">{Year === "1" ? "Upload Aadhar Card" : "Upload ID Card"} </Button>
         </Upload>
       )}
-      {userType === "faculty" && (
+      {(userType === "faculty" || userType === "outside") && (
         <Upload beforeUpload={() => false} onChange={handleFileChange} onRemove={() => setFileList([])} fileList={fileList} maxCount={1}>
           <Button icon={<UploadOutlined />} variant="contained" component="span">Upload ID Card</Button>
         </Upload>

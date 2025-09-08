@@ -28,7 +28,6 @@ const TEAM_2025_DATA = {
         { name: 'Zahrah', des: 'Public Relations Head', img: 'team/team2025/excom/3.jpg', url: 'https://www.linkedin.com/in/zahrah-aamaal?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
         { name: 'Baavith Reddy Anugu', des: 'Sponsorship & Budget Manager', img: 'team/team2025/excom/4.jpg', url: 'https://www.linkedin.com/in/baavith-reddy-anugu-062655317?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
         { name: 'SK. Thouhid Ali', des: 'Logistics Head', img: 'team/team2025/excom/5.jpg', url: 'https://www.linkedin.com/in/thouhid-ali-7ab06b286' },
-        { name: 'Kavitha Singh', des: 'Executive Producer', img: 'team/team2025/excom/6.jpg', url: 'https://www.linkedin.com/in/kavitha-singh-65235b261/' },
         { name: 'N Balaji', des: 'Website Manager', img: 'team/team2025/excom/7.jpg', url: 'https://www.linkedin.com/in/balaji-n152004' },
         { name: 'Sai Vyshnavi', des: 'Registrations Head', img: 'team/team2025/excom/8.jpg', url: 'https://www.linkedin.com/in/sai-vyshnavi-kammampati-3a8ba62aa' },
         { name: 'Adari Vishnu', des: 'Designer & Video and Production Lead', img: 'team/team2025/excom/9.jpg', url: 'https://www.linkedin.com/in/adari-vishnu-091131291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' }
