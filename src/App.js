@@ -11,6 +11,7 @@ import Speakers from './Speakers/speakers';
 import About from './About/about.jsx';
 import Contact from './Contact/contact.jsx';
 import PastEditions from './PastEditions/pasteditions.jsx';
+import Timeline from './agenda/agenda.jsx';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/pasteditions" element={<PastEditions />} />
           <Route path="/BookingsExternal" element={<EBooking />} />
+          <Route path="/agenda" element={<Timeline />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="*" element={<h1 style={{ color: 'white' }}>404 - Page Not Found</h1>} />
         </Routes>
